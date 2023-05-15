@@ -31,8 +31,6 @@ function App() {
     //tomar los datos del imput
 
     function handleChange({ target }) {
-        console.log(target.name)
-        console.log(target.value)
         setTask({
             ...task,
             [target.name]: target.value,
@@ -88,10 +86,6 @@ function App() {
                                         name="name"
                                         value={task.name}
                                     />
-                                </div>
-
-                                <div className="text-center pt-3">
-                                    <button className="btn btn-primary w-50" type="submit">Create</button>
                                 </div>
                             </form>
 
