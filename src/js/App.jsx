@@ -74,12 +74,13 @@ function App() {
 
                         <p className="title">todos</p>
 
-                        <div className=" border rounded border-secondary lead">
+                        <div className=" rounded lead box-shadow">
                             {/*Formulario*/}
                             <form onSubmit={handleSubmit} className=" p-3 mt-3" >
 
-                                <div className="form-group">
-                                    <input className="form-control"
+                                <div className="form-group lead">
+                                    <input className=""
+                                        placeholder="What needs to be done?"
                                         id="name"
                                         type="text"
                                         onChange={handleChange}
@@ -95,19 +96,19 @@ function App() {
                                         <div key={index} className="task-container border-top border-ligth"
                                                 onMouseOver={handleMouseOver}
                                                 onMouseOut={handleMouseOut}
-                                                onClick={()=>{handleDeleteTask(index)}
-                                                }
+                                                onClick={()=>{handleDeleteTask(index)}}
                                         >    
                                             <div className="float-start ms-3">
                                                 <p className="">{item.name}</p>
                                             </div>  
-
+                                                
+                                            <div onClick={()=>{handleDeleteTask(index)}}>    
                                             {isHovering && (
                                                 <div className="float-end btn mt-1 me-5">
                                                     <FontAwesomeIcon icon={faX}  style={{color: "#000000"}}/>
                                                 </div>  
                                             )}
-                                                                                                                 
+                                            </div>                                                                     
                                         </div>
                                     )
                                 })
@@ -115,7 +116,7 @@ function App() {
                             }
                             
                             
-                            <div className="border-top border-secondary lead">
+                            <div className="border-top border-secondary text-secondary lead">
                                 <p className="ms-3">{allTasks.length} items left</p>
                             </div>
 
