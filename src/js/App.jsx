@@ -1,5 +1,10 @@
 import { array } from "prop-types";
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faX
+  } from '@fortawesome/free-solid-svg-icons';
+  import '../styles/index.css' 
 
 
 const initialStateTask = { //Un dato de uso frecuente en el componente
@@ -20,6 +25,8 @@ function App() {
     const [task, setTask] = useState({
         name: ""
     })
+
+    const [isHovering, setIsHovering] = useState(false);
 
     //tomar los datos del imput
 
@@ -48,26 +55,28 @@ function App() {
         }
     }
 
-    function renderButtonDelete(){
-        return (<button onClick={() => { handleDeleteTask(index) }} className="btn btn-danger" >
-                X
-                </button>)
-    }
-
     function handleDeleteTask(index) {
         const oneLessTask = allTasks.filter(task => task.name != allTasks[index].name)
         setAllTasks(oneLessTask)
     }
 
+    function handleMouseOver() {
+        setIsHovering(true);
+      };
+    
+    function handleMouseOut () {
+        setIsHovering(false);
+    };
+
     return (
         <>
-            <div className="container">
+            <div className="container-flex bg-light">
                 <div className="row justify-content-center">
-                    <div className="col-12 col-md-6 ">
+                    <div className="col-12 col-md-6">
 
-                        <h2>todos</h2>
+                        <p className="title">todos</p>
 
-                        <div className=" border border-secondary lead">
+                        <div className=" border rounded border-secondary lead">
                             {/*Formulario*/}
                             <form onSubmit={handleSubmit} className=" p-3 mt-3" >
 
@@ -89,17 +98,31 @@ function App() {
                             {
                                 allTasks.map((item, index) => {
                                     return (
-                                        <div onMouseMove={renderButtonDelete} key={index} className="border-top p-3 mt-3">
-                                            <p>{item.name}</p>
-                                            
-                                        </div>
+                                        <div key={index} className="task-container border-top border-ligth"
+                                                onMouseOver={handleMouseOver}
+                                                onMouseOut={handleMouseOut}
+                                                onClick={()=>{handleDeleteTask(index)}
+                                                }
+                                        >    
+                                            <div className="float-start ms-3">
+                                                <p className="">{item.name}</p>
+                                            </div>  
 
+                                            {isHovering && (
+                                                <div className="float-end btn mt-1 me-5">
+                                                    <FontAwesomeIcon icon={faX}  style={{color: "#000000"}}/>
+                                                </div>  
+                                            )}
+                                                                                                                 
+                                        </div>
                                     )
                                 })
+                                
                             }
                             
-                            <div className="border border-secondary">
-                                <h5>{allTasks.length}</h5>
+                            
+                            <div className="border-top border-secondary lead">
+                                <p className="ms-3">{allTasks.length} items left</p>
                             </div>
 
                         </div>
