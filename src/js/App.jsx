@@ -90,7 +90,7 @@ function App() {
                                 </div>
                             </form>
 
-                            {
+                            {                                 
                                 allTasks.map((item, index) => {
                                     return (
                                         <div key={index} className="task-container border-top border-ligth"
@@ -111,14 +111,21 @@ function App() {
                                             </div>                                                                     
                                         </div>
                                     )
-                                })
-                                
+                                })   
+                            }
+                            {
+                                allTasks.length == 0 ? (
+                                            <div className="border-top border-secondary text-secondary lead">
+                                                <p className="ms-3 ">No tasks, add a task</p>
+                                            </div>  
+                                        ):(
+                                            <div className="border-top border-secondary text-secondary lead">
+                                                <p className="ms-3">{allTasks.length} items left</p>
+                                            </div>
+                                        )
                             }
                             
                             
-                            <div className="border-top border-secondary text-secondary lead">
-                                <p className="ms-3">{allTasks.length} items left</p>
-                            </div>
 
                         </div>
                     </div>
