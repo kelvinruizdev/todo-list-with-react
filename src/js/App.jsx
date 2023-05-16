@@ -6,14 +6,6 @@ import {
   } from '@fortawesome/free-solid-svg-icons';
   import '../styles/index.css' 
 
-
-const initialStateTask = { //Un dato de uso frecuente en el componente
-    fullname: "",
-    description: "",
-    email: "",
-    github: ""
-}
-
 function App() {
     //Guardar todas las tareas
     const [allTasks, setAllTasks] = useState([
@@ -25,10 +17,6 @@ function App() {
     const [task, setTask] = useState({
         name: ""
     })
-
-    const [isHovering, setIsHovering] = useState(false);
-
-    //tomar los datos del imput
 
     function handleChange({ target }) {
         setTask({
@@ -58,14 +46,6 @@ function App() {
         setAllTasks(oneLessTask)
     }
 
-    function handleMouseOver() {
-        setIsHovering(true);
-      };
-    
-    function handleMouseOut () {
-        setIsHovering(false);
-    };
-
     return (
         <>
             <div className="container-flex bg-light">
@@ -74,7 +54,7 @@ function App() {
 
                         <p className="title">todos</p>
 
-                        <div className=" rounded lead box-shadow">
+                        <div className="  lead box-shadow">
                             {/*Formulario*/}
                             <form onSubmit={handleSubmit} className=" p-3 mt-3" >
 
@@ -93,22 +73,15 @@ function App() {
                             {                                 
                                 allTasks.map((item, index) => {
                                     return (
-                                        <div key={index} className="task-container border-top border-ligth"
-                                                onMouseOver={handleMouseOver}
-                                                onMouseOut={handleMouseOut}
-                                                onClick={()=>{handleDeleteTask(index)}}
-                                        >    
-                                            <div className="float-start ms-3">
+                                        <div key={index} className="task-container border-top border-ligth">    
+                                            <div className="task-container--delete ">
                                                 <p className="">{item.name}</p>
-                                            </div>  
-                                                
-                                            <div onClick={()=>{handleDeleteTask(index)}}>    
-                                            {isHovering && (
-                                                <div className="float-end btn mt-1 me-5">
-                                                    <FontAwesomeIcon icon={faX}  style={{color: "#000000"}}/>
-                                                </div>  
-                                            )}
-                                            </div>                                                                     
+                                                <div className="delete-task btn"
+                                                    onClick={()=>{handleDeleteTask(index)}}
+                                                >
+                                                    <FontAwesomeIcon icon={faX} style={{color: "#000000"}}/>
+                                                </div> 
+                                            </div>                                  
                                         </div>
                                     )
                                 })   

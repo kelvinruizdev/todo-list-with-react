@@ -1,11 +1,8 @@
 
 .task-container{
     width: 100%;
-    height: 60px;
     font-size: 25px;
 }
-
-.all-tasks-container{}
 
 .title{
     text-align: center;
@@ -24,4 +21,34 @@ form input[type="text"]{
     border-left: none;
     border-right: none;
     border-bottom: 1px solid grey ;
+}
+
+.delete-task{
+    
+    position: absolute;
+    top: 0;
+    width: 100%;
+    /* padding: 15px 0px ; */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    bottom: 0;
+    opacity: 0;
+}
+
+.delete-task:hover{
+    opacity: 1;
+}
+
+.task-container--delete{
+    position: relative;
+    /* padding: 0px 15px; */
+    display: flex;
+    align-items: center;
+    
+}
+
+.task-container--delete p{
+    margin: 0px;
+    margin-left: 15px;
 }
